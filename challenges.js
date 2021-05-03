@@ -145,6 +145,13 @@ computeRemainder(4,0) //=> Infinity
 computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
+function computeRemainder(dividend, divisor) {
+  if (divisor === 0) {
+    return Infinity
+  } else {
+    return dividend % divisor
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 06-range
