@@ -31,6 +31,9 @@ addOne(1) //=> 2
 addOne(-5) //=> -4
 -----------------------------------------------------------------*/
 // Your solution for 01-addOne here:
+function addOne(num) {
+  return num + 1
+}
 
 /*-----------------------------------------------------------------
 Challenge: 02-addTwoNumbers
@@ -50,6 +53,13 @@ addTwoNumbers(0, 0) //=> 0
 addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
+function addTwoNumbers(num1, num2) {
+  if (isNaN(num1) || isNaN(num2)) {
+    return NaN
+  } else {
+    return num1 + num2
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 03-sumNumbers
@@ -69,6 +79,18 @@ sumNumbers([2, 10, -5]) //=> 7
 sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
+function sumNumbers(arr) {
+  let sum = 0
+  let length = arr.length
+  if (length === 0) {
+    return 0
+  } else {
+    for (let i = 0; i < length; i++) {
+      sum += arr[i]
+    }
+  }
+  return sum
+}
 
 /*-----------------------------------------------------------------
 Challenge: 04-addList
@@ -88,7 +110,22 @@ add(1,50,1.23) //=> 52.23
 add(7,-12) //=> -5
 -----------------------------------------------------------------*/
 // Your solution for 04-addList here:
-
+function addList() {
+  if (arguments === undefined) {
+    return 0
+  } else {
+    let sum = 0
+    let length = arguments.length
+    if (length === 0) {
+      return 0
+    } else {
+      for (let i = 0; i < length; i++) {
+        sum += parseFloat(arguments[i])
+      }
+    }
+    return sum
+  }
+}
 /*-----------------------------------------------------------------
 Challenge: 05-computeRemainder
 
