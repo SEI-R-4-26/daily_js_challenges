@@ -532,6 +532,14 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
 
+function mapArray(arr, callback) {
+  let newArr = []
+  arr.forEach((element, index) => {
+    newArr.push(callback(element, index))
+  })
+  return newArr
+}
+
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
 
