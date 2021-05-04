@@ -607,6 +607,18 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
+function flatten(arr) {
+  // base case is i have no more nested arrays and I want to return my  array
+  let myArr = []
+  arr.forEach((element) => {
+    if (Array.isArray(element) == false) {
+      myArr.push(element)
+    } else {
+      myArr = myArr.concat(flatten(element))
+    }
+  })
+  return myArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
