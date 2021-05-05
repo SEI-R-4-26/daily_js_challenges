@@ -128,7 +128,12 @@ computeRemainder(4,0) //=> Infinity
 computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
-
+const computeRemainder = (dividend, divisor) => {
+  if (divisor === 0) {
+    return Infinity
+  }
+  return dividend % divisor
+}
 /*-----------------------------------------------------------------
 Challenge: 06-range
 
@@ -147,6 +152,16 @@ range(1,1) //=> []
 range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
+const range = (x1, x2) => {
+  if (x1 > x2) {
+    return 'First argument must be less than second'
+  }
+  let newArr = []
+  for (i = 0; i < x2 - x1; i++) {
+    newArr.push(x1 + i)
+  }
+  return newArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 07-reverseUpcaseString
@@ -162,6 +177,15 @@ Examples:
 reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
+const reverseUpcaseString = (str) => {
+  str = str.toUpperCase()
+  let newStr = ''
+  for (let i = str.length - 1; i >= 0; i--) {
+    newStr = newStr + str[i]
+  }
+
+  return newStr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
