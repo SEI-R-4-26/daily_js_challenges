@@ -203,6 +203,13 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
+const removeEnds = (str) => {
+  if (str.length < 3) {
+    return ''
+  }
+  let newString = str.slice(1, str.length - 1)
+  return newString
+}
 
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
@@ -222,6 +229,18 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
+const charCount = (str) => {
+  let newObj = {}
+  for (i = 0; i < str.length; i++) {
+    let newChar = str[i]
+    if (newObj[newChar] > 0) {
+      newObj[newChar] = newObj[newChar] + 1
+    } else {
+      newObj[newChar] = 1
+    }
+  }
+  return newObj
+}
 
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
@@ -244,6 +263,19 @@ formatWithPadding(42, '*', 10); //=> "********42"
 formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
+const formatWithPadding = (num, pad, strLength) => {
+  let strNum = String(num)
+  if (strNum.length >= strLength) {
+    return strNum
+  }
+  let amtPad = strLength - strNum.length
+  let newStr = ''
+  for (i = 0; i < amtPad; i++) {
+    newStr = newStr.concat(pad)
+  }
+  newStr = newStr.concat(strNum)
+  return newStr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
@@ -265,6 +297,17 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
+const isPalindrome = (str) => {
+  str = str.toUpperCase()
+  str = str.replace(/\s+/g, '')
+  for (i = 0; i < str.length / 2; i++) {
+    let j = str.length - i - 1
+    if (str[i] !== str[j]) {
+      return false
+    }
+  }
+  return true
+}
 
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
@@ -287,6 +330,18 @@ hammingDistance('!!!!', '****'); //=> 4
 hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
+const hammingDistance = (str1, str2) => {
+  if (str1.length !== str2.length) {
+    return NaN
+  }
+  let count = 0
+  for (i = 0; i < str1.length; i++) {
+    if (str1[i] !== str2[i]) {
+      count++
+    }
+  }
+  return count
+}
 
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
@@ -307,6 +362,19 @@ mumble('121'); //=> '1-22-111'
 mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
+const mumble = (str) => {
+  if (str.length < 1) {
+    return ''
+  }
+  let newStr = str[0]
+  for (let i = 1; i < str.length; i++) {
+    newStr = newStr.concat(`-${str[i]}`)
+    for (let j = 1; j <= i; j++) {
+      newStr = newStr.concat(str[i])
+    }
+  }
+  return newStr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
