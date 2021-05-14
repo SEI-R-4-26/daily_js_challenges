@@ -222,7 +222,19 @@ removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
 
-
+function removeEnds(str) {
+  if (str.length < 3) {
+    return ''
+  } else {
+    str = str.split('')
+    str = str.reverse()
+    str = str.slice(1)
+    str = str.reverse()
+    str = str.slice(1)
+    str = str.join('')
+    return str
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
