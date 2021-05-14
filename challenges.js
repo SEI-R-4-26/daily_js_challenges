@@ -286,7 +286,17 @@ formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
 
-
+function formatWithPadding(int1, str, int2) {
+  int1 = int1.toString()
+  if (int1.length >= int2) {
+    return int1
+  } else {
+    while (int1.length < int2) {
+      int1 = str + int1
+    }
+    return int1
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
