@@ -547,6 +547,17 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 //=> {"Yes": 2, "No": 1, "Maybe": 1}
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
+const reduceArray = (ary, funct, acc) => {
+  let sum = funct(acc, ary[0], 0)
+  for (let i = 1; i < ary.length; i++) {
+    if (typeof sum === 'object') {
+      sum = funct(acc, ary[i], i)
+    } else {
+      sum += funct(acc, ary[i], i)
+    }
+  }
+  return sum
+}
 
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
@@ -594,6 +605,22 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
+const isPrime = (num) => {
+  if (num <= 1) {
+    return false
+  }
+  if (Number.isInteger(num) === false) {
+    return false
+  }
+  let checkDiv = Math.floor(num / 2)
+  while (checkDiv > 1) {
+    if (num % checkDiv === 0) {
+      return false
+    }
+    checkDiv--
+  }
+  return true
+}
 
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
@@ -618,6 +645,62 @@ primeFactors(105) //=> [3, 5, 7]
 primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
+const primeFactors = (num) => {
+  if (num <= 1) {
+    return []
+  }
+  if (Number.isInteger(num) === false) {
+    return []
+  }
+  let newProduct = num
+  let newArr = []
+  let newDiv = 2
+  let numCheck = true
+  let numCheck2 = true
+
+  while (newProduct > 1 && newDiv < num) {
+    numCheck = true
+    if (newDiv <= 1) {
+      numCheck = false
+    }
+    if (Number.isInteger(newDiv) === false) {
+      console.log('not an integer')
+      numCheck = false
+    }
+    let checkDiv = Math.floor(newDiv / 2)
+    while (checkDiv > 1 && numCheck === true) {
+      if (newDiv % checkDiv === 0) {
+        console.log(`even ${checkDiv}`)
+        numCheck = false
+      }
+      checkDiv--
+    }
+
+    if (numCheck === true) {
+      numCheck2 = true
+      while (numCheck2 === true) {
+        if (newProduct % newDiv === 0) {
+          newArr.push(newDiv)
+          newProduct = newProduct / newDiv
+        } else {
+          numCheck2 = false
+        }
+      }
+      // if (isPrime(newDiv) === true) {
+      //   newArr.push(newDiv)
+      //   newProduct = 1
+      // }
+      console.log(`in smaller loop`)
+    }
+    newDiv++
+    console.log(`in big while ${newDiv}`)
+  }
+  if (newArr.length > 0) {
+    return newArr
+  } else {
+    return num
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
