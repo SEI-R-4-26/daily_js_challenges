@@ -393,7 +393,18 @@ fromPairs([ ['a', 1], ['b', 2], ['c', 3] ]) //=> { a: 1, b: 2, c: 3 }
 fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
-
+const fromPairs = (nestedArr) => {
+  const newObj = {}
+  for (let i = 0; i < nestedArr.length; i++) {
+    let newKey = nestedArr[i][0]
+    console.log(newKey)
+    let newVal = nestedArr[i][1]
+    console.log(newVal)
+    newObj[newKey] = newVal
+  }
+  console.log(newObj)
+  return newObj
+}
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
@@ -411,6 +422,20 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
+// NOT PASSING YET, NO IDEA WHY
+const mergeObjects = (target, ...objArr) => {
+  objArr.forEach((obj) => {
+    target = {
+      ...target,
+      ...obj
+    }
+  })
+  return target
+}
+/*--- Using ES2015's Object.assign & spread operator ---*/
+// function mergeObjects(target, ...objects) {
+//   return Object.assign(target, ...objects)
+// }
 
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
@@ -445,6 +470,15 @@ findHighestPriced([
 //=> { sku: 'b2', price: 50 }
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
+const findHighestPriced = (priceArray) => {
+  highestIndex = 0
+  for (let i = 1; i < priceArray.length; i++) {
+    if (priceArray[i].price > priceArray[highestIndex].price) {
+      highestIndex = i
+    }
+  }
+  return priceArray[highestIndex]
+}
 
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
@@ -472,6 +506,13 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 //=> ["1 - rose", "2 - tulip", "3 - daisy"]
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
+const mapArray = (ary, funct) => {
+  newArr = []
+  for (let i = 0; i < ary.length; i++) {
+    newArr.push(funct(ary[i], i))
+  }
+  return newArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
