@@ -646,36 +646,30 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 const primeFactors = (num) => {
-  if (num <= 1) {
-    return []
-  }
-  if (Number.isInteger(num) === false) {
-    return []
-  }
   let newProduct = num
   let newArr = []
   let newDiv = 2
   let numCheck = true
   let numCheck2 = true
+  if (num < 2) {
+    return []
+  }
 
-  while (newProduct > 1 && newDiv < num) {
+  while (newProduct > 1 && newDiv <= num) {
     numCheck = true
     if (newDiv <= 1) {
       numCheck = false
     }
     if (Number.isInteger(newDiv) === false) {
-      console.log('not an integer')
       numCheck = false
     }
     let checkDiv = Math.floor(newDiv / 2)
     while (checkDiv > 1 && numCheck === true) {
       if (newDiv % checkDiv === 0) {
-        console.log(`even ${checkDiv}`)
         numCheck = false
       }
       checkDiv--
     }
-
     if (numCheck === true) {
       numCheck2 = true
       while (numCheck2 === true) {
@@ -686,19 +680,13 @@ const primeFactors = (num) => {
           numCheck2 = false
         }
       }
-      // if (isPrime(newDiv) === true) {
-      //   newArr.push(newDiv)
-      //   newProduct = 1
-      // }
-      console.log(`in smaller loop`)
     }
     newDiv++
-    console.log(`in big while ${newDiv}`)
   }
   if (newArr.length > 0) {
     return newArr
   } else {
-    return num
+    return newArr.push(num)
   }
 }
 
