@@ -640,6 +640,22 @@ isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
 
+const isPrime = (num) => {
+  let prime = true
+
+  if (num > 1 && Number.isInteger(num)) {
+    for (let i = 2; i <= num / 2; i++) {
+      if (Number.isInteger(num / i)) {
+        prime = false
+      }
+    }
+  } else {
+    return false
+  }
+
+  return prime
+}
+
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
 
