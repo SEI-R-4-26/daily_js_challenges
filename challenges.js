@@ -710,6 +710,15 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
+const intersection = (arr1, arr2) => {
+  let newArr = []
+  arr2.forEach((val) => {
+    if (arr1.some((val2) => val === val2)) {
+      newArr.push(val)
+    }
+  })
+  return newArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
@@ -732,6 +741,26 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
+const balancedBrackets = (bracketStr) => {
+  let balanceCheck = true
+  arr = bracketStr.split('')
+  while (balanceCheck === true && arr.length > 0) {
+    balanceCheck = false
+    for (let i = 0; i < arr.length - 1; i++) {
+      let a = arr[i]
+      let b = arr[i + 1]
+      if (
+        (a === '(' && b === ')') ||
+        (a === '{' && b === '}') ||
+        (a === '[' && b === ']')
+      ) {
+        arr.splice(i, 2)
+        balanceCheck = true
+      }
+    }
+  }
+  return balanceCheck
+}
 
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
