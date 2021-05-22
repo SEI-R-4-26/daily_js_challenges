@@ -13,7 +13,9 @@ sayHello() //=> Hello!
 -----------------------------------------------------------------*/
 // Your solution for 00-sayHello (example) here:
 
-
+function sayHello() {
+  return 'Hello!'
+}
 
 /*-----------------------------------------------------------------
 Challenge: 01-addOne
@@ -31,7 +33,9 @@ addOne(-5) //=> -4
 -----------------------------------------------------------------*/
 // Your solution for 01-addOne here:
 
-
+function addOne(x) {
+  return x + 1
+}
 
 /*-----------------------------------------------------------------
 Challenge: 02-addTwoNumbers
@@ -52,7 +56,13 @@ addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
 
-
+function addTwoNumbers(num1, num2) {
+  if (isNaN(num1) || isNaN(num2)) {
+    return NaN
+  } else {
+    return num1 + num2
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 03-sumNumbers
@@ -73,7 +83,21 @@ sumNumbers([]) //=> 0
 -----------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
 
+function sumNumbers(numbers) {
+  let total = 0
+  if (numbers.length) {
+    for (let index = 0; index < numbers.length; index++) {
+      total += numbers[index]
+    }
+  }
+  return total
+}
 
+// sumNumbers([10]) //=> 10
+// sumNumbers([5, 10]) //=> 15
+// sumNumbers([2, 10, -5]) //=> 7
+// sumNumbers([]) //=> 0
+// sumNumbers([4, 20, 30, 30, 10])
 
 /*-----------------------------------------------------------------
 Challenge: 04-addList
@@ -94,7 +118,17 @@ add(7,-12) //=> -5
 -----------------------------------------------------------------*/
 // Your solution for 04-addList here:
 
-
+function addList() {
+  let total = 0
+  for (let i = 0; i < arguments.length; i++) {
+    total += arguments[i]
+  }
+  return total
+}
+// addList(1) //=> 1
+// addList(1, 50, 1.23) //=> 52.23
+// addList(7, -12) //=> -5
+// addList(0)
 
 /*-----------------------------------------------------------------
 Challenge: 05-computeRemainder
@@ -116,7 +150,17 @@ computeRemainder(10.5, 3) //=> 1.5
 -----------------------------------------------------------------*/
 // Your solution for 05-computeRemainder:
 
+function computeRemainder(num1, num2) {
+  if (num2 === 0) {
+    return Infinity
+  } else {
+    return num1 % num2
+  }
+}
 
+// computeRemainder(10, 2) //=> 0
+// computeRemainder(4, 0) //=> Infinity
+// computeRemainder(10.5, 3) //=> 1.5
 
 /*-----------------------------------------------------------------
 Challenge: 06-range
@@ -137,7 +181,22 @@ range(5,2) //=> "First argument must be less than second"
 -----------------------------------------------------------------*/
 // Your solution for 06-range here:
 
+function range(num1, num2) {
+  let outPut = []
+  for (let i = num1; i < num2; i++) {
+    outPut.push(i)
+  }
+  if (num1 > num2) {
+    return 'First argument must be less than second'
+  } else {
+    return outPut
+  }
+}
 
+range(1, 4) //=> [1,2,3]
+range(-2, 3) //=> [-2,-1,0,1,2]
+range(1, 1) //=> []
+range(5, 2) //=> "First argument must be less than second"
 
 /*-----------------------------------------------------------------
 Challenge: 07-reverseUpcaseString
@@ -153,8 +212,6 @@ Examples:
 reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
@@ -172,8 +229,6 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
@@ -193,8 +248,6 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
@@ -218,8 +271,6 @@ formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
 
@@ -240,8 +291,6 @@ isPalindrome('A nut for a jar of tuna'); //=> true
 isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
@@ -265,8 +314,6 @@ hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 13-mumble
 
@@ -287,8 +334,6 @@ mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -307,8 +352,6 @@ fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sal
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
 
@@ -326,8 +369,6 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
@@ -363,8 +404,6 @@ findHighestPriced([
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
 
@@ -391,8 +430,6 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 //=> ["1 - rose", "2 - tulip", "3 - daisy"]
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
@@ -428,8 +465,6 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
 
@@ -457,8 +492,6 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
 
@@ -478,8 +511,6 @@ isPrime(29) //=> true
 isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
@@ -505,8 +536,6 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -527,8 +556,6 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
@@ -551,8 +578,6 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
@@ -580,8 +605,6 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -608,8 +631,6 @@ getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
 
-
-
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
@@ -634,8 +655,6 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
@@ -663,9 +682,6 @@ countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
 
-
-
-
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
@@ -689,8 +705,6 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
@@ -717,8 +731,6 @@ addChecker( [10, 15, 16, 22], 32 ) // => true
 addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
-
-
 
 /*-----------------------------------------------------------------
 Challenge: 30-totalTaskTime
@@ -747,5 +759,3 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
-
-
