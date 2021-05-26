@@ -931,6 +931,32 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
+const gridTrip = (startArr, dirStr) => {
+  let regExdir = /\w\d*/gi
+  let dirArr = dirStr.match(regExdir)
+  let newArr = startArr
+  for (let i = 0; i < dirArr.length; i++) {
+    let dir = dirArr[i].slice(0, 1)
+    let dist = parseInt(dirArr[i].slice(1))
+    switch (dir) {
+      case 'U':
+        newArr[0] = newArr[0] + dist
+        break
+      case 'D':
+        newArr[0] = newArr[0] - dist
+        break
+      case 'L':
+        newArr[1] = newArr[1] - dist
+        break
+      case 'R':
+        newArr[1] = newArr[1] + dist
+        break
+      default:
+        console.log('not a direction')
+    }
+  }
+  return newArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
