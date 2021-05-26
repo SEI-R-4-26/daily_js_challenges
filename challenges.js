@@ -700,6 +700,28 @@ intersection(['a', 1], [true, 'a', 15]) //=> ['a']
 intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
+const intersection = (arr1, arr2) => {
+  let newArr = []
+  if (arr1.length > arr2.length) {
+    for (let i = 0; i < arr2.length; i++) {
+      for (let j = 0; j < arr1.length; j++) {
+        if (arr2[i] === arr1[j]) {
+          newArr.push(arr2[i])
+        }
+      }
+    }
+  } else {
+    for (let i = 0; i < arr1.length; i++) {
+      for (let j = 0; j < arr2.length; j++) {
+        if (arr1[i] === arr2[j]) {
+          newArr.push(arr1[i])
+        }
+      }
+    }
+  }
+
+  return newArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
@@ -799,6 +821,20 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
+const toCamelCase = (str) => {
+  let myStr = ''
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === '-' || str[i] === '_') {
+      // dont push this character, capitalize the next one and increment
+      myStr += str[i + 1].toUpperCase()
+      i++
+    } else {
+      myStr += str[i]
+    }
+  }
+
+  return myStr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
