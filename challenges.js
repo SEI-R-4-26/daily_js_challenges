@@ -897,6 +897,16 @@ countTheBits( 255 ) //=> 8
 countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
+const countTheBits = (num) => {
+  let bitNum = num.toString(2)
+  let count = 0
+  for (i = 0; i < bitNum.length; i++) {
+    if (bitNum[i] === '1') {
+      count++
+    }
+  }
+  return count
+}
 
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
