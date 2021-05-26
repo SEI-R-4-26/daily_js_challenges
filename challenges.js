@@ -319,7 +319,26 @@ isPalindrome(''); //=> true
 -----------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
 
-
+const isPalindrome = (string) => {
+  string = string.toLowerCase();
+  while (string.includes(' ')) string = string.replace(' ', '');
+  let array = string.split('');
+  let verdict = false;
+  if (array.length <= 1) {
+    verdict = true;
+  } else {
+  for (i=0; i<array.length; i++) {
+    for (j=array.length-1; j>=0; j--) {
+      if (array[i] === array[j]) {
+        verdict = true;
+      } else if (array[i] != array[j]) {
+        verdict = false;
+      }
+    }
+  }
+  }
+  return verdict
+}
 
 /*-----------------------------------------------------------------
 Challenge: 12-hammingDistance
