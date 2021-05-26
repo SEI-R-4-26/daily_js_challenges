@@ -862,6 +862,16 @@ countTheBits( 65535 )  //=> 16
 -----------------------------------------------------------------*/
 // Your solution for 27-countTheBits here:
 
+const countTheBits = (num) => {
+  let numBits = num.toString(2)
+  let count = 0
+  for (let i = 0; i < numBits.length; i++) {
+    if (numBits[i] === '1') {
+      count++
+    }
+  }
+  return count
+}
 /*-----------------------------------------------------------------
 Challenge: 28-gridTrip
 
