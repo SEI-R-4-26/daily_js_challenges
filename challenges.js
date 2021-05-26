@@ -921,6 +921,27 @@ addChecker( [10, 15, 16, 22], 32 ) // => true
 addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
+const addChecker = (arr, sum) => {
+  // i hate to admit it but I actually wrote this function during an interview with another boot camp!
+  let i = 0
+  let j = arr.length - 1
+
+  while (i < j) {
+    if (arr[i] + arr[j] === sum) {
+      return true
+    } else {
+      if (arr[i] + arr[j] > sum) {
+        // right element needs to be less than it is
+        j--
+      } else {
+        //left element needs to be more increment left
+        i++
+      }
+    }
+  }
+
+  return false
+}
 
 /*-----------------------------------------------------------------
 Challenge: 30-totalTaskTime
