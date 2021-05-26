@@ -823,7 +823,18 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
-
+const getNumForIP = (ipString) => {
+  let sum = 0
+  let ipArr = ipString.split('.')
+  let power = 0
+  for (i = ipArr.length - 1; i >= 0; i--) {
+    let value = parseInt(ipArr[i], 10)
+    let powerVal = Math.pow(256, power)
+    sum += value * powerVal
+    power++
+  }
+  return sum
+}
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
 
@@ -848,6 +859,18 @@ toCamelCase( 'Mama-mia' ) // => 'MamaMia'
 toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
+const toCamelCase = (str) => {
+  console.log('-----')
+  let re = /-\w/gi
+  let newStr = str.replaceAll(re, (match, p1) => {
+    return str[p1 + 1].toUpperCase()
+  })
+  re = /_\w/gi
+  let newNewStr = newStr.replaceAll(re, (match, p1) => {
+    return newStr[p1 + 1].toUpperCase()
+  })
+  return newNewStr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
