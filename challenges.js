@@ -787,6 +787,16 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 100], ['Hello', 108] ] ) // => true
 isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
+const isWinningTicket = (ary) => {
+  for (let i = 0; i < ary.length; i++) {
+    let testChar = String.fromCharCode(ary[i][1])
+    let testArr = ary[i][0].split('')
+    if (testArr.findIndex((element) => element === testChar) < 0) {
+      return false
+    }
+  }
+  return true
+}
 
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
