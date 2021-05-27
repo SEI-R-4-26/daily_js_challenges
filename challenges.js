@@ -745,6 +745,8 @@ balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
 
+const balancedBrackets = (str) => {}
+
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
 
@@ -771,6 +773,33 @@ isWinningTicket( [ ['ABC', 66], ['dddd', 15], ['Hello', 108] ] ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 24-isWinningTicket here:
 
+const isWinningTicket = (arr) => {
+  let numStrs = arr.length
+  let winCount = 0
+  let winArr = []
+  for (let i = 0; i < arr.length; i++) {
+    winArr.push(false)
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    // loop through ticket
+    for (let j = 0; j < arr[i][0].length; j++) {
+      // check each char in string to see if char code is ===
+      if (arr[i][0].charCodeAt(j) === parseInt(arr[i][1])) {
+        winArr[i] = true
+      }
+    }
+  }
+
+  for (let i = 0; i < winArr.length; i++) {
+    if (winArr[i] === false) {
+      return false
+    }
+  }
+
+  return true
+}
+
 /*-----------------------------------------------------------------
 Challenge: 25-getNumForIP
 
@@ -796,6 +825,69 @@ getNumForIP( '192.156.99.15' ) // => 3231474447
 getNumForIP( '10.0.0.1' ) // => 167772161
 -----------------------------------------------------------------*/
 // Your solution for 25-getNumForIP here:
+
+const getNumForIP = (ipNum) => {
+  let ipNumStr = ipNum
+  let dotCount = 0
+  let numArr = ['', '', '', '']
+  let numStr = ''
+  let myCount = 0
+
+  while (dotCount < 3 && myCount < ipNumStr.length) {
+    while (ipNumStr[myCount] !== '.' && myCount < ipNumStr.length) {
+      numStr += ipNumStr[myCount]
+      myCount++
+    }
+
+    if (dotCount === 3) {
+      numArr[dotCount] = parseInt(numStr)
+      myCount++
+    } else {
+      numArr[dotCount] = parseInt(numStr)
+      dotCount++
+      myCount++
+      numStr = ''
+    }
+  }
+
+  return numArr
+
+  for (let i = 0; i < ipNumStr.length; i++) {
+    if (dotCount === 3) {
+      while (i < ipNumStr.length) {
+        // grab the last string
+        numStr += ipNumStr[i]
+        i++
+      }
+      dotCount++
+      numArr[dotCount] = parseInt(numStr)
+    } else {
+    }
+
+    if (ipNumStr[i] === '.') {
+      // check for last number after third dot
+      if (dotCount === 3) {
+        i++
+      } else {
+        // ip number has ended, send that string to my array
+        numArr[dotCount] = parseInt(numStr)
+        dotCount++
+        numStr = ''
+      }
+    } else {
+      // need to keep adding to my string
+      numStr += ipNumStr[i]
+    }
+  }
+  return numArr
+
+  let numToReturn =
+    parseInt(numArr[0]) * Math.pow(256, 3) +
+    parseInt(numArr[1]) * Math.pow(256, 2) +
+    parseInt(numArr[2]) * 256 +
+    parseInt(numArr[3])
+  return numToReturn
+}
 
 /*-----------------------------------------------------------------
 Challenge: 26-toCamelCase
