@@ -983,6 +983,20 @@ addChecker( [10, 15, 16, 22], 32 ) // => true
 addChecker( [10, 15, 16, 22], 19 ) // => false
 -----------------------------------------------------------------*/
 // Your solution for 29-addChecker here:
+const addChecker = (numArr, val) => {
+  for (let i = numArr.length; i >= 0; i--) {
+    let newSum = -Infinity
+    let j = 0
+    while (newSum <= val && j < i) {
+      let newSum = numArr[i] + numArr[j]
+      if (newSum === val) {
+        return true
+      }
+      j++
+    }
+  }
+  return false
+}
 
 /*-----------------------------------------------------------------
 Challenge: 30-totalTaskTime
@@ -1011,3 +1025,36 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
+const totalTaskTime = (queueArr, thread) => {
+  let maxThread = thread < queueArr.length ? thread : queueArr.length
+  let newObj = {}
+  let i, threadNum
+  // account for empty array
+  if (queueArr.length < 1) {
+    return 0
+  }
+  // go through array
+  for (i = 1; i <= maxThread; i++) {
+    newObj[`${i}`] = queueArr[i - 1]
+  }
+  i--
+  for (i; i < queueArr.length; i++) {
+    let minNum = Infinity
+    for (j = 1; j <= maxThread; j++) {
+      if (minNum > newObj[`${j}`]) {
+        minNum = newObj[`${j}`]
+        threadNum = j
+      }
+    }
+    let oldSum = minNum
+    newObj[`${threadNum}`] = oldSum + queueArr[i]
+  }
+  //go through to find max num
+  let maxNum = -Infinity
+  for (j = 1; j <= maxThread; j++) {
+    if (maxNum < newObj[`${j}`]) {
+      maxNum = newObj[`${j}`]
+    }
+  }
+  return maxNum
+}
