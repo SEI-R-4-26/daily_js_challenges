@@ -362,6 +362,19 @@ hammingDistance('abc', 'ab'); //=> NaN
 -----------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
 
+const hammingDistance = (firstString, secondString) => {
+  let count = 0;
+  if (firstString.length != secondString.length) {
+    count = NaN
+  } else if (firstString.length === secondString.length) {
+    for (i=0; i<firstString.length; i++) {
+      if (firstString[i] != secondString[i]) {
+        count ++
+      } else { }
+    }
+  }
+  return count
+}
 
 
 /*-----------------------------------------------------------------
@@ -384,6 +397,19 @@ mumble('!A 2'); //=> '!-AA-   -2222'
 -----------------------------------------------------------------*/
 // Your solution for 13-mumble here:
 
+const mumble = (string) => {
+  let arr = string.split('')
+  let result = ''
+  for (i = 0; i < arr.length; i++) {
+    for (j=1; j<=i+1; j++) {
+      result += String(arr[i])
+    }
+    if (i<arr.length-1) {
+      result += '-'
+  }
+}
+return result
+}
 
 
 /*-----------------------------------------------------------------
