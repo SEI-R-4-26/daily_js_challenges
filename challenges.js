@@ -422,20 +422,9 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4});  //=> {a: 1, b: 2, c: 3, d: 4}
 mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
-// NOT PASSING YET, NO IDEA WHY
 const mergeObjects = (target, ...objArr) => {
-  objArr.forEach((obj) => {
-    target = {
-      ...target,
-      ...obj
-    }
-  })
-  return target
+  return Object.assign(target, ...objArr)
 }
-/*--- Using ES2015's Object.assign & spread operator ---*/
-// function mergeObjects(target, ...objects) {
-//   return Object.assign(target, ...objects)
-// }
 
 /*-----------------------------------------------------------------
 Challenge: 16-findHighestPriced
@@ -585,6 +574,14 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
+
+const flatten = (arr) => {
+  let newArr = arr.flat()
+  while (newArr.some((val) => Array.isArray(val))) {
+    newArr = newArr.flat()
+  }
+  return newArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
