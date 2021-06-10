@@ -430,7 +430,13 @@ fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ]) //=> { name: "Sal
 -----------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
 
-
+const fromPairs = (arrNest) => {
+  let obj = {}
+  arrNest.map((arr)=> {
+    obj[arr[0]] = arr[1]
+  })
+  return obj
+}
 
 /*-----------------------------------------------------------------
 Challenge: 15-mergeObjects
