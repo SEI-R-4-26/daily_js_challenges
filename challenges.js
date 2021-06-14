@@ -456,6 +456,19 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44});  //=> {a: 1, b: 22, c:
 -----------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
 
+const mergeObjects = (objTotal,...objs) => {
+  const mergeIt = (obj) => {
+    for (let prop in obj) {
+      if (obj.hasOwnProperty(prop)) {
+        objTotal[prop] = obj[prop];
+      }
+    }
+  };
+  for (let i=0; i<objs.length; i++) {
+      mergeIt(objs[i]);
+  }
+  return(objTotal)
+}
 
 
 /*-----------------------------------------------------------------
