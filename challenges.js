@@ -505,7 +505,17 @@ findHighestPriced([
 -----------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
 
-
+const findHighestPriced=(objArray)=>{
+  let find
+  let value = 0
+  for (i=0; i < objArray.length; i++) {
+    if (objArray[i].price > value) {
+      value = objArray[i].price
+      find = i
+    }
+}
+  return objArray[find]
+}
 
 /*-----------------------------------------------------------------
 Challenge: 17-mapArray
