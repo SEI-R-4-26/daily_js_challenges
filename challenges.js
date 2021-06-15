@@ -559,7 +559,7 @@ Difficulty:  Intermediate
 
 Prompt:
 
-The goal is of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.reduce method.
+The goal of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.reduce method.
 
 - Write a function named reduceArray that accepts three arguments: (1) an array; (2) a callback function; and (3) a value used as the initial value of the "accumulator".
 - The reduceArray function should return whatever is returned by the callback function on the last iteration.
@@ -586,7 +586,13 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
 
-
+const reduceArray = (arr,cb,acc) => {
+  for (i=0;i<arr.length;i++) {
+    let newAcc= cb(acc,arr[i],i)
+    acc=newAcc
+  }
+  return acc
+}
 
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
