@@ -524,7 +524,7 @@ Difficulty:  Intermediate
 
 Prompt:
 
-The goal is of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.map method.
+The goal of this challenge is to write a function that performs the functionality of JavaScript's Array.prototype.map method.
 
 - Write a function named mapArray that accepts two arguments: a single array and a callback function.
 - The mapArray function should return a new array of the same length as the array argument.
@@ -544,7 +544,13 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 -----------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
 
-
+const mapArray = (arr, cb) => {
+  let newArr = []
+  for (i=0;i<arr.length;i++) {
+    newArr.push(cb(arr[i],i))
+  }
+  return newArr
+}
 
 /*-----------------------------------------------------------------
 Challenge: 18-reduceArray
