@@ -621,7 +621,30 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 -----------------------------------------------------------------*/
 // Your solution for 19-flatten here:
 
+const flatten = (arr) => {
+  // let newArr = []
+  // function shorten(n) {
+  //   if(n.length>1) {
+  //   newArr.push(n.shift())}
+  //   shorten(n)
+  // }
+  // for (i=0;i<arr.length;i++) {
+  //   if (arr[i].length>1) {
+  //     shorten(arr[i])
+  //   } else if (arr[i].length===1) {
+  //     for (j=0;j<arr[i[j]].length;j++)
+  //     newArr.push(arr[i])
+  // }
+  
+  // }
+  // return newArr
 
+  // ANGERY. GIVING UP TRYING TO MAKE THIS WORK.
+ 
+    return arr.flat(arr.length)
+
+    // WHAT THE STINK. ARE YOU KIDDING ME?
+}
 
 /*-----------------------------------------------------------------
 Challenge: 20-isPrime
@@ -643,7 +666,16 @@ isPrime(200) //=> false
 -----------------------------------------------------------------*/
 // Your solution for 20-isPrime here:
 
-
+const isPrime = (int) => {
+  if (int>1 && int === Math.floor(int)) {
+  if (int % 2 === 0 && int != 2) {
+    return false
+  } if (int % int === 0) {
+    return true
+  }} else {
+    return false
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 21-primeFactors
