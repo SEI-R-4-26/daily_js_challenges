@@ -701,7 +701,24 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 
-
+const primeFactors = (int) => {
+  let factors = [];
+  while (int % 2 === 0) {
+    factors.push(2);
+    int = int / 2;
+  }
+  let root = Math.sqrt(int);
+  for (let i = 3; i <= root; i++) {
+      while (int % i === 0) {
+         factors.push(i);
+          int = int / i;
+      }
+  }
+  if (int > 2) {
+      factors.push(int);
+  }
+  return(factors);
+}
 
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
