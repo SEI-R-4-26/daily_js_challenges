@@ -827,66 +827,66 @@ getNumForIP( '10.0.0.1' ) // => 167772161
 // Your solution for 25-getNumForIP here:
 
 const getNumForIP = (ipNum) => {
-  let ipNumStr = ipNum
-  let dotCount = 0
-  let numArr = ['', '', '', '']
-  let numStr = ''
-  let myCount = 0
-
-  while (dotCount < 3 && myCount < ipNumStr.length) {
-    while (ipNumStr[myCount] !== '.' && myCount < ipNumStr.length) {
-      numStr += ipNumStr[myCount]
-      myCount++
-    }
-
-    if (dotCount === 3) {
-      numArr[dotCount] = parseInt(numStr)
-      myCount++
-    } else {
-      numArr[dotCount] = parseInt(numStr)
-      dotCount++
-      myCount++
-      numStr = ''
-    }
+  let ipNumArr = ipNum.split('.')
+  let sum = 0
+  for (let i = 3; i >= 0; i--) {
+    sum += ipNumArr[i] * Math.pow(256, 3 - i)
   }
-
-  return numArr
-
-  for (let i = 0; i < ipNumStr.length; i++) {
-    if (dotCount === 3) {
-      while (i < ipNumStr.length) {
-        // grab the last string
-        numStr += ipNumStr[i]
-        i++
-      }
-      dotCount++
-      numArr[dotCount] = parseInt(numStr)
-    } else {
-    }
-
-    if (ipNumStr[i] === '.') {
-      // check for last number after third dot
-      if (dotCount === 3) {
-        i++
-      } else {
-        // ip number has ended, send that string to my array
-        numArr[dotCount] = parseInt(numStr)
-        dotCount++
-        numStr = ''
-      }
-    } else {
-      // need to keep adding to my string
-      numStr += ipNumStr[i]
-    }
-  }
-  return numArr
-
-  let numToReturn =
-    parseInt(numArr[0]) * Math.pow(256, 3) +
-    parseInt(numArr[1]) * Math.pow(256, 2) +
-    parseInt(numArr[2]) * 256 +
-    parseInt(numArr[3])
-  return numToReturn
+  return sum
+  // let ipNumStr = ipNum
+  // let dotCount = 0
+  // let numArr = ['', '', '', '']
+  // let numStr = ''
+  // let myCount = 0
+  // while (dotCount < 3 && myCount < ipNumStr.length) {
+  //   while (ipNumStr[myCount] !== '.' && myCount < ipNumStr.length) {
+  //     numStr += ipNumStr[myCount]
+  //     myCount++
+  //   }
+  //   if (dotCount === 3) {
+  //     numArr[dotCount] = parseInt(numStr)
+  //     myCount++
+  //   } else {
+  //     numArr[dotCount] = parseInt(numStr)
+  //     dotCount++
+  //     myCount++
+  //     numStr = ''
+  //   }
+  // }
+  // return numArr
+  // for (let i = 0; i < ipNumStr.length; i++) {
+  //   if (dotCount === 3) {
+  //     while (i < ipNumStr.length) {
+  //       // grab the last string
+  //       numStr += ipNumStr[i]
+  //       i++
+  //     }
+  //     dotCount++
+  //     numArr[dotCount] = parseInt(numStr)
+  //   } else {
+  //   }
+  //   if (ipNumStr[i] === '.') {
+  //     // check for last number after third dot
+  //     if (dotCount === 3) {
+  //       i++
+  //     } else {
+  //       // ip number has ended, send that string to my array
+  //       numArr[dotCount] = parseInt(numStr)
+  //       dotCount++
+  //       numStr = ''
+  //     }
+  //   } else {
+  //     // need to keep adding to my string
+  //     numStr += ipNumStr[i]
+  //   }
+  // }
+  // return numArr
+  // let numToReturn =
+  //   parseInt(numArr[0]) * Math.pow(256, 3) +
+  //   parseInt(numArr[1]) * Math.pow(256, 2) +
+  //   parseInt(numArr[2]) * 256 +
+  //   parseInt(numArr[3])
+  // return numToReturn
 }
 
 /*-----------------------------------------------------------------
@@ -987,6 +987,43 @@ gridTrip( [5, 10], 'D5L15U2' ) //-> [2, -5]
 gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
+const gridTrip = (arr, dirStr) => {
+  let destination = [arr[0], arr[1]]
+
+  for (let i = 0; i < dirStr.length; i++) {
+    if (dirStr[i] === 'L') {
+      let numStr = ''
+      while (isNaN(dirStr[i])) {
+        numStr += dirStr[i]
+        i++
+      }
+      destination[0] -= parseInt(numStr)
+    } else if (dirStr[i] === 'R') {
+      let numStr = ''
+      while (isNaN(dirStr[i])) {
+        numStr += dirStr[i]
+        i++
+      }
+      destination[0] += parseInt(numStr)
+    } else if (dirStr[i] === 'U') {
+      let numStr = ''
+      while (isNaN(dirStr[i])) {
+        numStr += dirStr[i]
+        i++
+      }
+      destination[1] += parseInt(numStr)
+    } else if (dirStr[i] === 'D') {
+      let numStr = ''
+      while (isNaN(dirStr[i])) {
+        numStr += dirStr[i]
+        i++
+      }
+      destination[1] -= parseInt(numStr)
+    }
+  }
+
+  return destination
+}
 
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
@@ -1062,3 +1099,28 @@ totalTaskTime( [2, 2, 3, 3, 4, 4], 2 ) //=> 9
 totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 -----------------------------------------------------------------*/
 // Your solution for 30- here:
+const totalTaskTime = (queue, threads) => {
+  let time = 0
+  let queueIdx = 0
+  if (queue.length > 0) {
+    while (queueIdx < queue.length) {
+      // loop to end of array
+      while (queue[queueIdx] > 0) {
+        // loop to decrement task time in array
+        queue[queueIdx] -= threads
+        time++
+        if (time > 100) {
+          return time
+          break
+        }
+      }
+      queueIdx++
+      if (queueIdx > 100) {
+        return time
+        break
+      }
+    }
+  }
+
+  return time
+}
