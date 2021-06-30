@@ -680,6 +680,27 @@ primeFactors(200) //=> [2, 2, 2, 5, 5]
 -----------------------------------------------------------------*/
 // Your solution for 21-primeFactors here:
 
+const primeFactors = (num) => {
+  let primes = []
+  let primeNum = 2
+  if (num < 2) {
+    return primes
+  } else if (!Number.isInteger(num)) {
+    return primes
+  } else {
+    while (!isPrime(num)) {
+      if (Number.isInteger(num / primeNum)) {
+        primes.push(primeNum)
+        num = num / primeNum
+      } else {
+        primeNum++
+      }
+    }
+  }
+  primes.push(num)
+  return primes
+}
+
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
@@ -745,7 +766,50 @@ balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
 
-const balancedBrackets = (str) => {}
+const balancedBrackets = (str) => {
+  // loop through array
+  let bracketsArray = str.split('')
+  let copy = bracketsArray
+
+  for (let i = 0; i < bracketsArray.length; i++) {
+    if (
+      (bracketsArray[i] === '(' && bracketsArray[i + 1] === ')') ||
+      (bracketsArray[i] === '{' && bracketsArray[i + 1] === '}') ||
+      (bracketsArray[i] === '[' && bracketsArray[i + 1] === ']')
+    ) {
+      // found a nested balanced set of brackets
+      if (copy.length === 2) {
+        return true
+      } else {
+        copy.splice(i, 2)
+        console.log(copy)
+        i = 0
+      }
+
+      if (copy.length === 2) {
+        if (copy[0] === '{') {
+          if (copy[1] === '}') {
+            return true
+          }
+        } else if (copy[0] === '(') {
+          if (copy[1] === ')') {
+            return true
+          }
+        } else if (copy[0] === '[') {
+          if (copy[1] === ']') {
+            return true
+          }
+        }
+      }
+    }
+  }
+
+  if (copy.length > 0) {
+    return false
+  } else {
+    return true
+  }
+}
 
 /*-----------------------------------------------------------------
 Challenge: 24-isWinningTicket
