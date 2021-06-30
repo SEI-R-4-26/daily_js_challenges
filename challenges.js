@@ -537,16 +537,25 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 -----------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
 const reduceArray = (ary, funct, acc) => {
-  let sum = funct(acc, ary[0], 0)
-  for (let i = 1; i < ary.length; i++) {
-    if (typeof sum === 'object') {
-      sum = funct(acc, ary[i], i)
-    } else {
-      sum += funct(acc, ary[i], i)
-    }
+  newAcc = acc
+  for (let i = 0; i < ary.length; i++) {
+    newAcc = funct(newAcc, ary[i], i)
   }
-  return sum
+  return newAcc
 }
+// my weird code below
+
+// const reduceArray = (ary, funct, acc) => {
+//   let sum = funct(acc, ary[0], 0)
+//   for (let i = 1; i < ary.length; i++) {
+//     if (typeof sum === 'object') {
+//       sum = funct(acc, ary[i], i)
+//     } else {
+//       sum += funct(acc, ary[i], i)
+//     }
+//   }
+//   return sum
+// }
 
 /*-----------------------------------------------------------------
 Challenge: 19-flatten
