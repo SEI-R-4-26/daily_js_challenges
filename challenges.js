@@ -655,28 +655,13 @@ const primeFactors = (num) => {
   let newProduct = num
   let newArr = []
   let newDiv = 2
-  let numCheck = true
   let numCheck2 = true
   if (num < 2) {
     return []
   }
 
   while (newProduct > 1 && newDiv <= num) {
-    numCheck = true
-    if (newDiv <= 1) {
-      numCheck = false
-    }
-    if (Number.isInteger(newDiv) === false) {
-      numCheck = false
-    }
-    let checkDiv = Math.floor(newDiv / 2)
-    while (checkDiv > 1 && numCheck === true) {
-      if (newDiv % checkDiv === 0) {
-        numCheck = false
-      }
-      checkDiv--
-    }
-    if (numCheck === true) {
+    if (isPrime(newDiv) === true) {
       numCheck2 = true
       while (numCheck2 === true) {
         if (newProduct % newDiv === 0) {
@@ -695,7 +680,7 @@ const primeFactors = (num) => {
     return newArr.push(num)
   }
 }
-
+console.log(primeFactors(200)) //=> [2, 2, 2, 5, 5]
 /*-----------------------------------------------------------------
 Challenge: 22-intersection
 
