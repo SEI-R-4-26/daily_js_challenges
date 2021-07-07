@@ -747,8 +747,9 @@ const intersection = (arr1, arr2) => {
 // ordering w/e
 // return empty if no repeats
 // do not change arguments
+let match = arr2.filter(index => arr1.includes(index))
 
-
+return match
 }
 
 /*-----------------------------------------------------------------
