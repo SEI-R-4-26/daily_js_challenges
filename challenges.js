@@ -709,13 +709,13 @@ const primeFactors = (int) => {
   }
   let root = Math.sqrt(int);
   for (let i = 3; i <= root; i++) {
-      while (int % i === 0) {
-         factors.push(i);
-          int = int / i;
-      }
+    while (int % i === 0) {
+      factors.push(i);
+      int = int / i;
+    }
   }
   if (int > 2) {
-      factors.push(int);
+    factors.push(int);
   }
   return(factors);
 }
@@ -741,7 +741,15 @@ intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 -----------------------------------------------------------------*/
 // Your solution for 22-intersection here:
 
+const intersection = (arr1, arr2) => {
+// may contain string, number, or bool -- no objects
+// return new array with all common elements, including repeats
+// ordering w/e
+// return empty if no repeats
+// do not change arguments
 
+
+}
 
 /*-----------------------------------------------------------------
 Challenge: 23-balancedBrackets
@@ -764,6 +772,28 @@ balancedBrackets( '[(])' ) // => false
 balancedBrackets( '[({}[])]' ) // => true
 -----------------------------------------------------------------*/
 // Your solution for 23-balancedBrackets here:
+
+const balancedBrackets = (string) => {
+  let arr = string.split('')
+  let verdict = false
+  let ttl = 0
+  while (arr.length > 0 && ttl <20) {
+    for (let i = 0; i < arr.length; i++) {
+      if ((arr[i]==='(' && arr[i+1]===')') || (arr[i]==='[' && arr[i+1]===']') || (arr[i]==='{' && arr[i+1]==='}')){
+        arr.splice(i,2)
+        ttl+=1
+      } else {
+        verdict = false
+        ttl+=1
+      }
+    }
+  }
+  if (arr.length === 0) {
+    verdict = true
+  } else { verdict = false}
+  return verdict
+}
+
 
 
 
@@ -903,6 +933,9 @@ gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 -----------------------------------------------------------------*/
 // Your solution for 28-gridTrip here:
 
+const gridTrip = (intArr, ) => {
+
+}
 
 
 /*-----------------------------------------------------------------
