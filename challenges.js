@@ -330,9 +330,9 @@ function isPalindrome(string) {
         noSpaceString[i].toUpperCase() !=
         noSpaceString[noSpaceString.length - i - 1].toUpperCase()
       ) {
-        console.log(
-          noSpaceString[i] && ' ' && noSpaceString[noSpaceString.length - i - 1]
-        )
+        // console.log(
+        //   noSpaceString[i] && ' ' && noSpaceString[noSpaceString.length - i - 1]
+        // )
         palindrome = false
       }
     }
@@ -723,20 +723,15 @@ intersection([1, 'a', true, 1, 1], [true, 1, 'b', 1]) //=> [1, true, 1]
 // Your solution for 22-intersection here:
 const intersection = (arr1, arr2) => {
   let newArr = []
-  if (arr1.length > arr2.length) {
-    for (let i = 0; i < arr2.length; i++) {
-      for (let j = 0; j < arr1.length; j++) {
-        if (arr2[i] === arr1[j]) {
-          newArr.push(arr2[i])
-        }
-      }
-    }
-  } else {
-    for (let i = 0; i < arr1.length; i++) {
-      for (let j = 0; j < arr2.length; j++) {
-        if (arr1[i] === arr2[j]) {
-          newArr.push(arr1[i])
-        }
+  let copyArrOne = arr1
+  let copyArrTwo = arr2
+
+  for (let i = 0; i < copyArrOne.length; i++) {
+    for (let j = 0; j < copyArrTwo.length; j++) {
+      if (copyArrOne[i] === copyArrTwo[j]) {
+        newArr.push(copyArrOne[i])
+        copyArrTwo.splice(j, 1)
+        j--
       }
     }
   }
@@ -782,7 +777,7 @@ const balancedBrackets = (str) => {
         return true
       } else {
         copy.splice(i, 2)
-        console.log(copy)
+        // console.log(copy)
         i = 0
       }
 
@@ -897,60 +892,6 @@ const getNumForIP = (ipNum) => {
     sum += ipNumArr[i] * Math.pow(256, 3 - i)
   }
   return sum
-  // let ipNumStr = ipNum
-  // let dotCount = 0
-  // let numArr = ['', '', '', '']
-  // let numStr = ''
-  // let myCount = 0
-  // while (dotCount < 3 && myCount < ipNumStr.length) {
-  //   while (ipNumStr[myCount] !== '.' && myCount < ipNumStr.length) {
-  //     numStr += ipNumStr[myCount]
-  //     myCount++
-  //   }
-  //   if (dotCount === 3) {
-  //     numArr[dotCount] = parseInt(numStr)
-  //     myCount++
-  //   } else {
-  //     numArr[dotCount] = parseInt(numStr)
-  //     dotCount++
-  //     myCount++
-  //     numStr = ''
-  //   }
-  // }
-  // return numArr
-  // for (let i = 0; i < ipNumStr.length; i++) {
-  //   if (dotCount === 3) {
-  //     while (i < ipNumStr.length) {
-  //       // grab the last string
-  //       numStr += ipNumStr[i]
-  //       i++
-  //     }
-  //     dotCount++
-  //     numArr[dotCount] = parseInt(numStr)
-  //   } else {
-  //   }
-  //   if (ipNumStr[i] === '.') {
-  //     // check for last number after third dot
-  //     if (dotCount === 3) {
-  //       i++
-  //     } else {
-  //       // ip number has ended, send that string to my array
-  //       numArr[dotCount] = parseInt(numStr)
-  //       dotCount++
-  //       numStr = ''
-  //     }
-  //   } else {
-  //     // need to keep adding to my string
-  //     numStr += ipNumStr[i]
-  //   }
-  // }
-  // return numArr
-  // let numToReturn =
-  //   parseInt(numArr[0]) * Math.pow(256, 3) +
-  //   parseInt(numArr[1]) * Math.pow(256, 2) +
-  //   parseInt(numArr[2]) * 256 +
-  //   parseInt(numArr[3])
-  // return numToReturn
 }
 
 /*-----------------------------------------------------------------
@@ -1053,42 +994,59 @@ gridTrip( [-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 // Your solution for 28-gridTrip here:
 const gridTrip = (arr, dirStr) => {
   let destination = [arr[0], arr[1]]
-
-  for (let i = 0; i < dirStr.length; i++) {
-    if (dirStr[i] === 'L') {
-      let numStr = ''
-      while (isNaN(dirStr[i])) {
-        numStr += dirStr[i]
-        i++
-      }
-      destination[0] -= parseInt(numStr)
-    } else if (dirStr[i] === 'R') {
-      let numStr = ''
-      while (isNaN(dirStr[i])) {
-        numStr += dirStr[i]
-        i++
-      }
-      destination[0] += parseInt(numStr)
-    } else if (dirStr[i] === 'U') {
-      let numStr = ''
-      while (isNaN(dirStr[i])) {
-        numStr += dirStr[i]
-        i++
-      }
-      destination[1] += parseInt(numStr)
-    } else if (dirStr[i] === 'D') {
-      let numStr = ''
-      while (isNaN(dirStr[i])) {
-        numStr += dirStr[i]
-        i++
-      }
-      destination[1] -= parseInt(numStr)
+  let regExdir = /\w\d*/gi
+  let dirArr = dirStr.match(regExdir)
+  // let bracketsArray = str.split('')
+  // console.log(dirArr)
+  for (let i = 0; i < dirArr.length; i++) {
+    let direction = dirArr[i][0]
+    let numDirection = dirArr[i].substring(1, dirArr[i].length)
+    if (direction === 'L') {
+      destination[1] -= parseInt(numDirection)
+    } else if (direction === 'R') {
+      destination[1] += parseInt(numDirection)
+    } else if (direction === 'U') {
+      destination[0] += parseInt(numDirection)
+    } else {
+      destination[0] -= parseInt(numDirection)
     }
   }
 
+  // for (let i = 0; i < dirStr.length; i++) {
+  //   if (dirStr[i] === 'L') {
+  //     let numStr = ''
+  //     while (isNaN(dirStr[i])) {
+  //       numStr += dirStr[i]
+  //       i++
+  //     }
+  //     destination[0] -= parseInt(numStr)
+  //   } else if (dirStr[i] === 'R') {
+  //     let numStr = ''
+  //     while (isNaN(dirStr[i])) {
+  //       numStr += dirStr[i]
+  //       i++
+  //     }
+  //     destination[0] += parseInt(numStr)
+  //   } else if (dirStr[i] === 'U') {
+  //     let numStr = ''
+  //     while (isNaN(dirStr[i])) {
+  //       numStr += dirStr[i]
+  //       i++
+  //     }
+  //     destination[1] += parseInt(numStr)
+  //   } else if (dirStr[i] === 'D') {
+  //     let numStr = ''
+  //     while (isNaN(dirStr[i])) {
+  //       numStr += dirStr[i]
+  //       i++
+  //     }
+  //     destination[1] -= parseInt(numStr)
+  //   }
+  // }
+  // console.log(destination)
   return destination
 }
-
+gridTrip([-22, 100], 'L2L15D50U1D9') //=> [-80, 83]
 /*-----------------------------------------------------------------
 Challenge: 29-addChecker
 
@@ -1165,26 +1123,39 @@ totalTaskTime( [5, 2, 6, 8, 7, 2], 3 ) // => 12
 // Your solution for 30- here:
 const totalTaskTime = (queue, threads) => {
   let time = 0
-  let queueIdx = 0
-  if (queue.length > 0) {
-    while (queueIdx < queue.length) {
-      // loop to end of array
-      while (queue[queueIdx] > 0) {
-        // loop to decrement task time in array
-        queue[queueIdx] -= threads
-        time++
-        if (time > 100) {
-          return time
-          break
-        }
-      }
-      queueIdx++
-      if (queueIdx > 100) {
-        return time
-        break
-      }
-    }
+  let myThreads = []
+  for (let i = 0; i < threads; i++) {
+    myThreads.push(0)
   }
 
-  return time
+  for (let i = 0; i < queue.length; i++) {
+    let minIndex = myThreads.indexOf(Math.min(...myThreads))
+    // console.log(myThreads.indexOf(Math.min(...myThreads)))
+    myThreads[minIndex] += parseInt(queue[i])
+    // console.log(myThreads)
+  }
+  // let queueIdx = 0
+  // if (queue.length > 0) {
+  //   while (queueIdx < queue.length) {
+  //     // loop to end of array
+  //     while (queue[queueIdx] > 0) {
+  //       // loop to decrement task time in array
+  //       queue[queueIdx] -= threads
+  //       time++
+  //       if (time > 100) {
+  //         return time
+  //         break
+  //       }
+  //     }
+  //     queueIdx++
+  //     if (queueIdx > 100) {
+  //       return time
+  //       break
+  //     }
+  //   }
+
+  // console.log(myThreads)
+  return Math.max(...myThreads)
 }
+
+// totalTaskTime([5, 2, 6, 8, 7, 2], 3) // => 12
