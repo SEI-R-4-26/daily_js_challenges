@@ -879,13 +879,38 @@ toCamelCase( 'A_b_c' ) // => 'ABC'
 -----------------------------------------------------------------*/
 // Your solution for 26-toCamelCase here:
 
+const toCamelCase = (string) => {
+  let array
+  if (string.includes("_")) {
+    array = string.split("_")
+  } else if (string.includes("-")) {
+    array = string.split("-")
+  } else {
+    array = string.split(" ")
+  }
+  let camelArray = []
+  array.map(function(word,i){
+    if (i===0){
+      camelArray.push(word)
+    } else if (array.length > 0 && i>0){
+      camelArray.push(word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    }
+  })
+  return(camelArray.join(''))
+ }
+
+ // LET THE RECORD SHOW THAT I AM VERY ANGERY AT THIS CHALLENGE QUESTION.
+ // I spent a lot of time agonizing over why I was failing
+ // when my code was definitely producing camel case strings,
+ // until I noticed that some of the examples' solutions were NOT, in fact,
+ // actually in camel case. >B(
 
 
 /*-----------------------------------------------------------------
 Challenge: 27-countTheBits
 
 Difficulty:  Intermediate
-
+D
 Prompt:
 
 - Write a function called countTheBits that accepts a single numeric argument that will be an integer.
