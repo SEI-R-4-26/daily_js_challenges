@@ -212,6 +212,13 @@ Examples:
 reverseUpcaseString("SEI Rocks!"); //=> "!SKCOR IES" 
 -----------------------------------------------------------------*/
 // Your solution for 07-reverseUpcaseString here:
+function reverseUpcaseString(str) {
+  console.log(str)
+  str = str.toUpperCase()
+  console.log(str.split(''))
+  const reverse = str.split('').reverse().join('')
+  return reverse
+}
 
 /*-----------------------------------------------------------------
 Challenge: 08-removeEnds
@@ -229,6 +236,34 @@ removeEnds('SEI Rocks!'); //=> "DI Rocks"
 removeEnds('a'); //=> "" (empty string)
 -----------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
+
+//dev moz. String.prototype.substr.
+
+// function removeEnds(str) {
+//   str = str.substr(0, str.length - 1)
+//   return ''
+//   console.log(str)
+// }
+
+// function removeEnds(str) {
+//   str = str.substr()
+// }
+
+//write an argument named removeEnds with (str) inside of it.
+//return a string with first and last letters removed.
+//if string < 3 return empty string
+//need to loop to remove the ends ?
+// string.prototype.charat moz charAt(index)
+function removeEnds(str) {
+  // if length of string < 3 return Empty ''
+  if (str.length < 3) return ''
+  let result = ''
+  for (let index = 1; index < str.length - 1; index++) {
+    result += str.charAt(index)
+  }
+  return result
+}
+console.log(removeEnds('SEI Rocks!'))
 
 /*-----------------------------------------------------------------
 Challenge: 09-charCount
@@ -248,6 +283,25 @@ charCount('hello') //=> { h: 1, e: 1, l: 2, o: 1 }
 charCount('Today is fantastic!') //=> { T: 1, o: 1, d: 1, a: 3, y: 1, ' ': 2, i: 2, s: 2, f: 1, n: 1, t: 2, c: 1, '!': 1 }
 -----------------------------------------------------------------*/
 // Your solution for 09-charCount here:
+
+// write a function named charCount(char = character) accepts a single str
+// returns an object {}
+// need for loop (returns count)
+function charCount(str) {
+  let result = {}
+  for (let index = 0; index < str.length; index++) {
+    if (result[str[index]] >= 1) {
+      result[str[index]]++
+    } else {
+      result[str[index]] = 1
+    }
+  }
+  return result
+}
+
+console.log(charCount('Today is fantastic!'))
+
+// obj["key3"] = "value3";
 
 /*-----------------------------------------------------------------
 Challenge: 10-formatWithPadding
@@ -270,7 +324,26 @@ formatWithPadding(42, '*', 10); //=> "********42"
 formatWithPadding(1234, '*', 3); //=> "1234"
 -----------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
+// 3 arguments 1. numberic argument. 2.string argument. 3. another numeric argument
+// function formatWithPadding(num, pad, length) {
+//   let answer = []
+//   answer.push(num)
+//   for (let i = 0; i < length; i++) {
+//     answer.unshift(pad)
+//   }
 
+//   return answer
+// }
+function formatWithPadding(num, pad, length) {
+  let result = num.toString()
+  while (result.length < length) {
+    result = pad + result
+    console.log(result)
+  }
+  return result
+}
+
+console.log(formatWithPadding(123, '0', 5))
 /*-----------------------------------------------------------------
 Challenge: 11-isPalindrome
 
